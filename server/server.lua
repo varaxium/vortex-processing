@@ -1,6 +1,6 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
-RegisterNetEvent('v-processing:server:reward', function()
+RegisterNetEvent('vortex-processing:server:reward', function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     if Player.Functions.RemoveItem(Config.StartItem, Config.StartItemAmount) then

@@ -16,7 +16,7 @@ SetBlockingOfNonTemporaryEvents(MethPed, true)
       options = {
           {
               type = "client",
-              event = "v-processing:client:CheckMethPackage",
+              event = "vortex-processing:client:CheckMethPackage",
               icon = "fas fa-box",
               label = "You Got That Blue Stuff?",
           },
@@ -25,17 +25,17 @@ SetBlockingOfNonTemporaryEvents(MethPed, true)
   })
 end)
 
-RegisterNetEvent('v-processing:client:CheckMethPackage')
-AddEventHandler('v-processing:client:CheckMethPackage', function()
+RegisterNetEvent('vortex-processing:client:CheckMethPackage')
+AddEventHandler('vortex-processing:client:CheckMethPackage', function()
   local Player = QBCore.Functions.GetPlayerData()
   if QBCore.Functions.HasItem(Config.StartItem, Config.StartItemAmount) then
-      TriggerEvent('v-processing:client:StartMethPackage')
+      TriggerEvent('vortex-processing:client:StartMethPackage')
     else
       QBCore.Functions.Notify('You Dont Have Any Blue Shit', 'error', 5000)
     end
 end)
 
-RegisterNetEvent('v-processing:client:StartMethPackage', function()
+RegisterNetEvent('vortex-processing:client:StartMethPackage', function()
   TaskStartScenarioInPlace(PlayerPedId(), "PROP_HUMAN_BUM_BIN", 5000, false)
   QBCore.Functions.Progressbar('package_meth', 'Packing Meth', 7000, false, true, {
       disableMovement = true,
@@ -44,6 +44,6 @@ RegisterNetEvent('v-processing:client:StartMethPackage', function()
       disableCombat = true,
   }, {}, {}, {}, function()
     ClearPedTasks(PlayerPedId())
-    TriggerServerEvent('v-processing:server:reward')
+    TriggerServerEvent('vortex-processing:server:reward')
   end)
 end)
